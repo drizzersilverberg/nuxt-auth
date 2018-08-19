@@ -11,9 +11,9 @@
       </div>
       <div class="navbar-menu">
         <div class="navbar-end">
-          <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-item has-dropdown is-hoverable" v-if="isAuthenticated">
             <a class="navbar-link">
-              My Account
+              {{ loggedInUser.username }}
             </a>
             <div class="navbar-dropdown">
               <nuxt-link class="navbar-item" to="/profile">My Profile</nuxt-link>
@@ -21,17 +21,24 @@
               <a class="navbar-item">Logout</a>
             </div>
           </div>
-          <nuxt-link class="navbar-item" to="/register">Register</nuxt-link>
-          <nuxt-link class="navbar-item" to="/login">Log In</nuxt-link>
+          <template v-else>
+            <nuxt-link class="navbar-item" to="/register">Register</nuxt-link>
+            <nuxt-link class="navbar-item" to="/login">Log In</nuxt-link>
+          </template>
         </div>
       </div>
     </div>
-  </nav>  
+  </nav>
 </template>
 
 <script>
-export default {
-}
+  import { mapGetters } from 'vuex'
+
+  export default {
+    computed: {
+      ...mapGetters(['isAuthenticated', 'loggedInUser'])
+    }
+  }
 </script>
 
 <style lang="css">
