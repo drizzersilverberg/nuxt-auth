@@ -65,6 +65,7 @@
     components: {
       Notification,
     },
+    middleware: ['guest'],
     data() {
       return {
         username: '',

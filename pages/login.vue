@@ -52,6 +52,7 @@
     components: {
       Notification,
     },
+    middleware: ['guest'],
     data() {
       return {
         email: '',
